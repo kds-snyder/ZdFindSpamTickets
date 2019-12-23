@@ -1,0 +1,17 @@
+body {
+    background-color: #cce6ff;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.row-padded {
+    padding-bottom: .5rem;
+}
+
+.zdtools-heading {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    text-align: center;
+}
