@@ -4,6 +4,7 @@ angular.module('app', [])
         var self = $scope;
         self.validInput = {
             'tagCyrillicFoundValid': true,
+            'tagStringFoundValid': true,
             'zdApiTokenValid': true,
             'zdEmailValid': true
         };
@@ -29,10 +30,14 @@ angular.module('app', [])
             // If checking for Cyrillic characters, tag must be specified
             self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)
 
+            // If checking for string, tag must be specified
+            self.validInput.tagStringFoundValid = (!self.checkString) || (self.checkString && self.tagStringFound)
+
             // email and token must be specified
             self.validInput.zdApiTokenValid = !!self.zdApiToken;
             self.validInput.zdEmailValid = !!self.zdEmail;
-            return self.validInput.tagCyrillicFoundValid && self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
+            return self.validInput.tagCyrillicFoundValid && self.validInput.tagStringFoundValid &&
+                            self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
         };
 
     });
