@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" ng-app="app">
 <head>
     <!-- Required meta tags -->
@@ -7,13 +7,12 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="custom.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    <script src="app.js"></script>
 </head>
 <body>
     <h2 class="zdtools-heading">Check ZD Tickets for Spam</h2>
-    <div ng-controller="zdToolsController as zdTools">        
+    <div ng-controller="zdToolsController as zdTools">
         <div class="container">
+            <!-- Row with headings -->
             <div class="row row-padded">
                 <div class="col-sm">
                 </div>
@@ -29,6 +28,7 @@
                 <div class="col-sm">
                 </div>
             </div>
+            <!-- Row with indicator for Cyrillic characters -->
             <div class="row row-padded">
                 <div class="col-sm">
                 </div>
@@ -46,6 +46,7 @@
 
                 </div>
             </div>
+            <!-- Row with input to specify string -->
             <div class="row">
                 <div class="col-sm">
                     <p>Specify string</p>
@@ -63,6 +64,7 @@
                 </div>
             </div>
             <hr />
+            <!-- Row with input for log file -->
             <div class="row row-padded">
                 <div class="col-2">
                     Log file
@@ -76,24 +78,30 @@
                 <div class="col-3">
                 </div>
             </div>
+            <!-- Row with input for ZD Credentials -->
             <div class="row row-padded">
                 <div class="col-2">
-                    ZD Credentials
+                    Zendesk Credentials
                 </div>
                 <div class="col-5">
                     <label>Email</label>
-                    <input class="full-width" type="text">
+                    <input class="full-width" ng-model="zdEmail" type="text">
+                    <div class="input-error" ng-show="zdEmailNotValid">
+                        <p>Email must be specified</p>
+                    </div>
                 </div>
                 <div class="col-5">
                     <label>API Token</label>
-                    <input class="full-width" type="text">
+                    <input class="full-width" ng-model="zdApiToken" type="text">
                 </div>
             </div>
 
-            <button class="button-start">Start checking tickets</button>
+            <button class="button-start" ng-click="startCheckTickets()">Start checking tickets</button>
         </div>
-        
+
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
