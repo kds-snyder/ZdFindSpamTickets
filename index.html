@@ -34,13 +34,13 @@
                 </div>
                 <div class="col-sm">
                     <label>All Cyrillic characters</label>
-                    <input type="checkbox" />
+                    <input type="checkbox" ng-model="checkCyrillic" />
                 </div>
                 <div class="col-sm">
-                    <input type="text">
+                    <input type="text" ng-model="tagCyrillicFound" > 
                 </div>
                 <div class="col-sm">
-                    <input type="checkbox" />
+                    <input type="checkbox" ng-model="solveCyrillicFound" />
                 </div>
                 <div class="col-sm">
 
@@ -52,13 +52,13 @@
                     <p>Specify string</p>
                 </div>
                 <div class="col-sm">
-                    <input type="text">
+                    <input type="text" ng-model="checkString">
                 </div>
                 <div class="col-sm">
-                    <input type="text">
+                    <input type="text" ng-model="tagStringFound">
                 </div>
                 <div class="col-sm">
-                    <input type="checkbox" />
+                    <input type="checkbox" ng-model="solveStringFound" />
                 </div>
                 <div class="col-sm">
                 </div>
@@ -86,13 +86,16 @@
                 <div class="col-5">
                     <label>Email</label>
                     <input class="full-width" ng-model="zdEmail" type="text">
-                    <div class="input-error" ng-show="zdEmailNotValid">
+                    <div class="input-error" ng-show="!zdEmailValid">
                         <p>Email must be specified</p>
                     </div>
                 </div>
                 <div class="col-5">
                     <label>API Token</label>
                     <input class="full-width" ng-model="zdApiToken" type="text">
+                    <div class="input-error" ng-show="!zdApiTokenValid">
+                        <p>API Token must be specified</p>
+                    </div>
                 </div>
             </div>
 

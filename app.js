@@ -2,7 +2,8 @@ angular.module('app', [])
     .controller('zdToolsController', function ($scope) {
         //var zdTools = this;
         var self = $scope;
-        self.zdEmailNotValid = false;
+        self.zdApiTokenValid = true;
+        self.zdEmailValid = true;
 
         // Get Zendesk credentials: base64-encode [email + '/token:' + token]
         self.getZdCredentials = function (email, token) {
@@ -22,7 +23,10 @@ angular.module('app', [])
         };
 
         self.validateInput = function () {
-            return true;
+            // email and token must be specified
+            self.zdApiTokenValid = !!self.zdApiToken;
+            self.zdEmailValid = !!self.zdEmail;
+            return self.zdApiTokenValid && self.zdEmailValid;
         };
 
     });
