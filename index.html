@@ -37,7 +37,10 @@
                     <input type="checkbox" ng-model="checkCyrillic" />
                 </div>
                 <div class="col-sm">
-                    <input type="text" ng-model="tagCyrillicFound" > 
+                    <input type="text" ng-model="tagCyrillicFound">
+                    <div class="input-error" ng-show="!tagCyrillicFoundValid">
+                        <p>Tag must be specified for tickets that have Cyrillic characters</p>
+                    </div>
                 </div>
                 <div class="col-sm">
                     <input type="checkbox" ng-model="solveCyrillicFound" />

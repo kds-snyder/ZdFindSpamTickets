@@ -2,6 +2,7 @@ angular.module('app', [])
     .controller('zdToolsController', function ($scope) {
         //var zdTools = this;
         var self = $scope;
+        self.tagCyrillicFoundValid = true;
         self.zdApiTokenValid = true;
         self.zdEmailValid = true;
 
@@ -23,10 +24,13 @@ angular.module('app', [])
         };
 
         self.validateInput = function () {
+            // If checking for Cyrillic characters, tag must be specified
+            self.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)
+
             // email and token must be specified
             self.zdApiTokenValid = !!self.zdApiToken;
             self.zdEmailValid = !!self.zdEmail;
-            return self.zdApiTokenValid && self.zdEmailValid;
+            return self.tagCyrillicFoundValid && self.zdApiTokenValid && self.zdEmailValid;
         };
 
     });
