@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-sm">
                     <input type="text" ng-model="tagCyrillicFound">
-                    <div class="input-error" ng-show="!tagCyrillicFoundValid">
+                    <div class="input-error" ng-show="!validInput.tagCyrillicFoundValid">
                         <p>Tag must be specified for tickets that have Cyrillic characters</p>
                     </div>
                 </div>
@@ -89,14 +89,14 @@
                 <div class="col-5">
                     <label>Email</label>
                     <input class="full-width" ng-model="zdEmail" type="text">
-                    <div class="input-error" ng-show="!zdEmailValid">
+                    <div class="input-error" ng-show="!validInput.zdEmailValid">
                         <p>Email must be specified</p>
                     </div>
                 </div>
                 <div class="col-5">
                     <label>API Token</label>
                     <input class="full-width" ng-model="zdApiToken" type="text">
-                    <div class="input-error" ng-show="!zdApiTokenValid">
+                    <div class="input-error" ng-show="!validInput.zdApiTokenValid">
                         <p>API Token must be specified</p>
                     </div>
                 </div>

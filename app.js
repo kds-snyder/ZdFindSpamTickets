@@ -2,9 +2,11 @@ angular.module('app', [])
     .controller('zdToolsController', function ($scope) {
         //var zdTools = this;
         var self = $scope;
-        self.tagCyrillicFoundValid = true;
-        self.zdApiTokenValid = true;
-        self.zdEmailValid = true;
+        self.validInput = {
+            'tagCyrillicFoundValid': true,
+            'zdApiTokenValid': true,
+            'zdEmailValid': true
+        };
 
         // Get Zendesk credentials: base64-encode [email + '/token:' + token]
         self.getZdCredentials = function (email, token) {
@@ -25,12 +27,12 @@ angular.module('app', [])
 
         self.validateInput = function () {
             // If checking for Cyrillic characters, tag must be specified
-            self.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)
+            self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)
 
             // email and token must be specified
-            self.zdApiTokenValid = !!self.zdApiToken;
-            self.zdEmailValid = !!self.zdEmail;
-            return self.tagCyrillicFoundValid && self.zdApiTokenValid && self.zdEmailValid;
+            self.validInput.zdApiTokenValid = !!self.zdApiToken;
+            self.validInput.zdEmailValid = !!self.zdEmail;
+            return self.validInput.tagCyrillicFoundValid && self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
         };
 
     });
