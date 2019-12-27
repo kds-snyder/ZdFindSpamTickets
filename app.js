@@ -16,6 +16,11 @@ angular.module('app', [])
             return zdCredentials;
         };
 
+        // Log message (to console)
+        self.logMessage = function (message) {
+            console.log(message);
+        };
+
         // Start checking tickets
         self.startCheckTickets = function () {
             if (!self.validateInput()) {
@@ -24,8 +29,12 @@ angular.module('app', [])
 
             self.zdCredentials = self.getZdCredentials(self.zdEmail, self.zdApiToken);
             console.log('self.zdCredentials: ' + self.zdCredentials);
+
+            self.logMessage('Starting ticket check');
+
         };
 
+        // Validate input
         self.validateInput = function () {
             // If checking for Cyrillic characters, tag must be specified
             self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)

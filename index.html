@@ -10,7 +10,7 @@
 </head>
 <body>
     <h2 class="zdtools-heading">Check ZD Tickets for Spam</h2>
-    <div ng-controller="zdToolsController as zdTools">
+    <div ng-controller="zdToolsController">
         <div class="container">
             <!-- Row with headings -->
             <div class="row row-padded">
@@ -70,13 +70,14 @@
             </div>
             <hr />
             <!-- Row with input for log file -->
-            <div class="row row-padded">
+            <div class="row row-padded" ng-show="false">
                 <div class="col-2">
                     Log file
                 </div>
                 <div class="col-5">
-                    <input class="full-width" type="text">
+                    <input type="file" ng-model="logFileName">
                 </div>
+                <pre>logFileName: {{logFileName}}</pre>
                 <div class="col-2">
                     <button>Browse...</button>
                 </div>
@@ -108,6 +109,7 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

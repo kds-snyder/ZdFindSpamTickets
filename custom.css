@@ -18,6 +18,10 @@ button {
     width: 100%;
 }
 
+.input-error {
+    color: red;
+}
+
 .row-padded {
     padding-bottom: .5rem;
 }
