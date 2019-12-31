@@ -12,7 +12,7 @@ angular.module('app', [])
         // Get Zendesk credentials: base64-encode [email + '/token:' + token]
         self.getZdCredentials = function (email, token) {
             var zdCredentials = btoa(email + '/token:' + token);
-            console.log('Credentials to encode: ' + email + '/token:' + token + ', encoded credentials: ' + zdCredentials);
+            //console.log('Credentials to encode: ' + email + '/token:' + token + ', encoded credentials: ' + zdCredentials);
             return zdCredentials;
         };
 
@@ -21,18 +21,25 @@ angular.module('app', [])
             console.log(message);
         };
 
-        // Start checking tickets
-        self.startCheckTickets = function () {
+        // Start processing tickets
+        self.processTicketsStart = function () {
             if (!self.validateInput()) {
                 return;
             }
 
             self.zdCredentials = self.getZdCredentials(self.zdEmail, self.zdApiToken);
-            console.log('self.zdCredentials: ' + self.zdCredentials);
+            //console.log('self.zdCredentials: ' + self.zdCredentials);
 
-            self.logMessage('Starting ticket check');
+            self.logMessage('Starting ticket processing');
+
+            self.processTickets();
 
         };
+
+        // Process tickets
+        self.processTickets = function () {
+        };
+
 
         // Validate input
         self.validateInput = function () {
