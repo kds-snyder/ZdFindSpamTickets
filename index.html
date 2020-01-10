@@ -49,9 +49,11 @@
                     <label>Cyrillic alphabet</label>
                     <input type="checkbox" ng-model="checkCyrillic" />
                 </div>
-                <div class="col-2 contain-required">
-                    <input type="text" ng-model="tagNames.checkCyrillic.spamDetected">
-                    <span class="asterisk" ng-show="checkCyrillic">*</span>
+                <div class="col-2">
+                    <div class="contain-required">
+                        <input type="text" ng-model="tagNames.checkCyrillic.spamDetected">
+                        <span class="asterisk" ng-show="checkCyrillic">*</span>
+                    </div>                    
                     <div class="input-error" ng-show="!validInput.checkCyrillicSpamDetected">
                         <p>Tag must be specified for tickets that have Cyrillic characters</p>
                     </div>
@@ -59,9 +61,11 @@
                 <div class="col-2">
                     <input type="text" ng-model="tagNames.checkCyrillic.noSurvey">
                 </div>
-                <div class="col-2 contain-required">
-                    <input type="text" ng-model="tagNames.checkCyrillic.tagCheckedByZdTools">
-                    <span class="asterisk" ng-show="checkCyrillic">*</span>
+                <div class="col-2">
+                    <div class="contain-required">
+                        <input type="text" ng-model="tagNames.checkCyrillic.tagCheckedByZdTools">
+                        <span class="asterisk" ng-show="checkCyrillic">*</span>
+                    </div>                    
                     <div class="input-error" ng-show="!validInput.checkCyrillicCheckedByZdTools">
                         <p>Tag must be specified for tickets already checked by this tool</p>
                     </div>
@@ -79,9 +83,11 @@
                 <div class="col-2">
                     <input type="text" ng-model="checkString">
                 </div>
-                <div class="col-2 contain-required">
-                    <input type="text" ng-model="tagNames.checkString.tagSpamDetected">
-                    <span class="asterisk" ng-show="checkString">*</span>
+                <div class="col-2">
+                    <div class="contain-required">
+                        <input type="text" ng-model="tagNames.checkString.tagSpamDetected">
+                        <span class="asterisk" ng-show="checkString">*</span>
+                    </div>                   
                     <div class="input-error" ng-show="!validInput.checkStringSpamDetected">
                         <p>Tag must be specified for tickets that have the input string</p>
                     </div>
@@ -89,9 +95,11 @@
                 <div class="col-2">
                     <input type="text" ng-model="tagNames.checkString.noSurvey">
                 </div>
-                <div class="col-2 contain-required">
-                    <input type="text" ng-model="tagNames.checkString.tagCheckedByZdTools">
-                    <span class="asterisk" ng-show="checkString">*</span>
+                <div class="col-2">
+                    <div class="contain-required">
+                        <input type="text" ng-model="tagNames.checkString.tagCheckedByZdTools">
+                        <span class="asterisk" ng-show="checkString">*</span>
+                    </div>                   
                     <div class="input-error" ng-show="!validInput.checkStringCheckedByZdTools">
                         <p>Tag must be specified for tickets already checked by this tool</p>
                     </div>
