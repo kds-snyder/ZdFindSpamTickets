@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="custom.css">
 </head>
 <body>
-    <h2 class="zdtools-heading">Check ZD Tickets for Spam</h2>
+    <h2 class="zdtools-heading">Check Zendesk Tickets for Spam</h2>
     <div ng-controller="zdToolsController">
         <div class="container">
             <!-- Row with headings -->
@@ -84,10 +84,26 @@
                 <div class="col-3">
                 </div>
             </div>
+            <!-- Row with inputs for API base and brand -->
+            <div class="row row-padded">
+                <div class="col-2">
+                    Zendesk Info
+                </div>
+                <div class="col-5">
+                    <label>Zendesk API base URL (e.g. https://xyz.zendesk.com)</label>
+                    <input class="full-width" ng-model="zdApiBaseUrl" type="text">
+                    <div class="input-error" ng-show="!validInput.zdApiBaseUrlValid">
+                        <p>Zendesk API base URL must be specified</p>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <label>Zendesk brand</label>
+                    <input class="full-width" ng-model="zdBrand" type="text">
+                </div>
+            </div>
             <!-- Row with input for ZD Credentials -->
             <div class="row row-padded">
                 <div class="col-2">
-                    Zendesk Credentials
                 </div>
                 <div class="col-5">
                     <label>Email</label>

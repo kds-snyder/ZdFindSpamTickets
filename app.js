@@ -5,6 +5,7 @@ angular.module('app', [])
         self.validInput = {
             'tagCyrillicFoundValid': true,
             'tagStringFoundValid': true,
+            'zdApiBaseUrlValid': true,
             'zdApiTokenValid': true,
             'zdEmailValid': true
         };
@@ -38,21 +39,63 @@ angular.module('app', [])
 
         // Process tickets
         self.processTickets = function () {
+            var done = false;
+            var apibrandUrlPart = self.zdBrand ? ' brand: "' + self.zdBrand + '"' : '';
+            var defaultApiUrl = self.zdApiBaseUrl + '/api/v2/search.json?query=type:ticket' + apibrandUrlPart + ' status<closed';
+            console.log('defaultApiUrl: ' + defaultApiUrl);
+
+            var lastQueryResult = null;
+
+            while (!done) {
+
+                // query tickets 
+                zdTicketService.queryTickets(defaultApiUrl, lastQueryResult).then(function (data) {
+                    if (!data) {
+                        done = true;
+                        break;
+                    }
+                    lastQueryResult = data;
+
+                    zdTicketService.processTickets(data).then(function () {
+
+                    });
+                });
+                //if (result.count === 0) {
+                //    done = true;
+                //    break;
+                //}
+
+                // process tickets
+
+                // set URL for next query, according to whether need to keep paging through results
+                //if (result.next_page) {
+                //    apiUrl = result.next_page;
+                //    console.log('Next page, apiUrl: ' + apiUrl);
+                //}
+                //else {
+                //    apiUrl = defaultApiUrl;
+                //    console.log('Starting again, apiUrl: ' + apiUrl);
+                //}
+                //done = true;
+            }
         };
 
 
         // Validate input
         self.validateInput = function () {
             // If checking for Cyrillic characters, tag must be specified
-            self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound)
+            self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound);
 
             // If checking for string, tag must be specified
-            self.validInput.tagStringFoundValid = (!self.checkString) || (self.checkString && self.tagStringFound)
+            self.validInput.tagStringFoundValid = (!self.checkString) || (self.checkString && self.tagStringFound);
 
-            // email and token must be specified
+            // API base URL must be specified
+            self.validInput.zdApiBaseUrlValid = !!self.zdApiBaseUrl;
+
+            // Email and token must be specified
             self.validInput.zdApiTokenValid = !!self.zdApiToken;
             self.validInput.zdEmailValid = !!self.zdEmail;
-            return self.validInput.tagCyrillicFoundValid && self.validInput.tagStringFoundValid &&
+            return self.validInput.tagCyrillicFoundValid && self.validInput.tagStringFoundValid && self.validInput.zdApiBaseUrlValid &&
                             self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
         };
 
