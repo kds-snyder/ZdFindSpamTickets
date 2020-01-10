@@ -3,11 +3,28 @@ angular.module('app', [])
         //var zdTools = this;
         var self = $scope;
         self.validInput = {
-            'tagCyrillicFoundValid': true,
-            'tagStringFoundValid': true,
+            'checkCyrillicCheckedByZdTools': true,
+            'checkCyrillicSpamDetected': true,
+            'checkStringCheckedByZdTools': true,
+            'checkStringSpamDetected': true,
             'zdApiBaseUrlValid': true,
             'zdApiTokenValid': true,
             'zdEmailValid': true
+        };
+
+        self.tagNames = {
+            'checkCyrillic': {
+                'spamDetected': '',
+                'noSurvey': '',
+                'checkedByZdTools': '',
+                'reviewedForSpam': ''
+            },
+            'checkString': {
+                'spamDetected': '',
+                'noSurvey': '',
+                'checkedByZdTools': '',
+                'reviewedForSpam': ''
+            }
         };
 
         // Get Zendesk credentials: base64-encode [email + '/token:' + token]
@@ -83,11 +100,13 @@ angular.module('app', [])
 
         // Validate input
         self.validateInput = function () {
-            // If checking for Cyrillic characters, tag must be specified
-            self.validInput.tagCyrillicFoundValid = (!self.checkCyrillic) || (self.checkCyrillic && self.tagCyrillicFound);
+            // If checking for Cyrillic characters, tags for spam detected and checked by ZdTools must be specified
+            self.validInput.checkCyrillicCheckedByZdTools = (!self.checkCyrillic) || (self.checkCyrillic && self.tagNames.checkCyrillic.tagCheckedByZdTools);
+            self.validInput.checkCyrillicSpamDetected = (!self.checkCyrillic) || (self.checkCyrillic && self.tagNames.checkCyrillic.spamDetected);
 
-            // If checking for string, tag must be specified
-            self.validInput.tagStringFoundValid = (!self.checkString) || (self.checkString && self.tagStringFound);
+            // If checking for string, tags for spam detected and checked by ZdTools must be specified
+            self.validInput.checkStringCheckedByZdTools = (!self.checkString) || (self.checkString && self.tagNames.checkString.tagCheckedByZdTools);
+            self.validInput.checkStringSpamDetected = (!self.checkString) || (self.checkString && self.tagNames.checkString.spamDetected);
 
             // API base URL must be specified
             self.validInput.zdApiBaseUrlValid = !!self.zdApiBaseUrl;
@@ -95,8 +114,9 @@ angular.module('app', [])
             // Email and token must be specified
             self.validInput.zdApiTokenValid = !!self.zdApiToken;
             self.validInput.zdEmailValid = !!self.zdEmail;
-            return self.validInput.tagCyrillicFoundValid && self.validInput.tagStringFoundValid && self.validInput.zdApiBaseUrlValid &&
-                            self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
+            return self.validInput.checkCyrillicSpamDetected && self.validInput.checkCyrillicCheckedByZdTools &&
+                self.validInput.checkStringSpamDetected && self.validInput.checkStringCheckedByZdTools &&
+                   self.validInput.zdApiBaseUrlValid && self.validInput.zdApiTokenValid && self.validInput.zdEmailValid;
         };
 
     });

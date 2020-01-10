@@ -13,61 +13,97 @@
     <div ng-controller="zdToolsController">
         <div class="container">
             <!-- Row with headings -->
-            <div class="row row-padded">
-                <div class="col-sm">
-                </div>
-                <div class="col-sm">
+            <div class="row">
+                <div class="col-2">
                     <h4>String</h4>
                 </div>
-                <div class="col-sm">
-                    <h4>Tag to apply</h4>
+                <div class="col-8">
+                    <h4>Tag names for:</h4>
                 </div>
-                <div class="col-sm">
+                <div class="col-2">
                     <h4>Solve ticket?</h4>
                 </div>
-                <div class="col-sm">
+            </div>
+            <!-- Row with subheadings -->
+            <div class="row row-padded">
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+                    <h3>Spam detected</h3>
+                </div>
+                <div class="col-2">
+                    <h3>No survey</h3>
+                </div>
+                <div class="col-2">
+                    <h3>Checked by ZdTools</h3>
+                </div>
+                <div class="col-2">
+                    <h3>Reviewed for spam</h3>
+                </div>
+                <div class="col-2">
                 </div>
             </div>
-            <!-- Row with input to specify Cyrillic characters -->
+            <!-- Row with input for Cyrillic characters -->
             <div class="row row-padded">
-                <div class="col-sm">
-                </div>
-                <div class="col-sm">
-                    <label>All Cyrillic characters</label>
+                <div class="col-2">
+                    <label>Cyrillic alphabet</label>
                     <input type="checkbox" ng-model="checkCyrillic" />
                 </div>
-                <div class="col-sm">
-                    <input type="text" ng-model="tagCyrillicFound">
-                    <div class="input-error" ng-show="!validInput.tagCyrillicFoundValid">
+                <div class="col-2 contain-required">
+                    <input type="text" ng-model="tagNames.checkCyrillic.spamDetected">
+                    <span class="asterisk" ng-show="checkCyrillic">*</span>
+                    <div class="input-error" ng-show="!validInput.checkCyrillicSpamDetected">
                         <p>Tag must be specified for tickets that have Cyrillic characters</p>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-2">
+                    <input type="text" ng-model="tagNames.checkCyrillic.noSurvey">
+                </div>
+                <div class="col-2 contain-required">
+                    <input type="text" ng-model="tagNames.checkCyrillic.tagCheckedByZdTools">
+                    <span class="asterisk" ng-show="checkCyrillic">*</span>
+                    <div class="input-error" ng-show="!validInput.checkCyrillicCheckedByZdTools">
+                        <p>Tag must be specified for tickets already checked by this tool</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input type="text" ng-model="tagNames.checkCyrillic.reviewedForSpam">
+                </div>
+                <div class="col-2">
                     <input type="checkbox" ng-model="solveCyrillicFound" />
                 </div>
-                <div class="col-sm">
-                </div>
             </div>
-            <!-- Row with input to specify string -->
+ 
+            <!-- Row with input for string -->
             <div class="row">
-                <div class="col-sm">
-                    <p>Specify string</p>
-                </div>
-                <div class="col-sm">
+                <div class="col-2">
                     <input type="text" ng-model="checkString">
                 </div>
-                <div class="col-sm">
-                    <input type="text" ng-model="tagStringFound">
-                    <div class="input-error" ng-show="!validInput.tagStringFoundValid">
+                <div class="col-2 contain-required">
+                    <input type="text" ng-model="tagNames.checkString.tagSpamDetected">
+                    <span class="asterisk" ng-show="checkString">*</span>
+                    <div class="input-error" ng-show="!validInput.checkStringSpamDetected">
                         <p>Tag must be specified for tickets that have the input string</p>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-2">
+                    <input type="text" ng-model="tagNames.checkString.noSurvey">
+                </div>
+                <div class="col-2 contain-required">
+                    <input type="text" ng-model="tagNames.checkString.tagCheckedByZdTools">
+                    <span class="asterisk" ng-show="checkString">*</span>
+                    <div class="input-error" ng-show="!validInput.checkStringCheckedByZdTools">
+                        <p>Tag must be specified for tickets already checked by this tool</p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input type="text" ng-model="tagNames.checkCyrillic.reviewedForSpam">
+                </div>
+                <div class="col-2">
                     <input type="checkbox" ng-model="solveStringFound" />
                 </div>
-                <div class="col-sm">
-                </div>
             </div>
+
             <hr />
             <!-- Row with input for log file -->
             <div class="row row-padded" ng-show="false">
@@ -90,7 +126,7 @@
                     Zendesk Info
                 </div>
                 <div class="col-5">
-                    <label>Zendesk API base URL (e.g. https://xyz.zendesk.com)</label>
+                    <label class="required">Zendesk API base URL (e.g. https://xyz.zendesk.com)</label>
                     <input class="full-width" ng-model="zdApiBaseUrl" type="text">
                     <div class="input-error" ng-show="!validInput.zdApiBaseUrlValid">
                         <p>Zendesk API base URL must be specified</p>
@@ -101,19 +137,20 @@
                     <input class="full-width" ng-model="zdBrand" type="text">
                 </div>
             </div>
-            <!-- Row with input for ZD Credentials -->
+            <!-- Row with inputs for email and token -->
             <div class="row row-padded">
                 <div class="col-2">
+                    Zendesk Credentials
                 </div>
                 <div class="col-5">
-                    <label>Email</label>
+                    <label class="required">Email</label>
                     <input class="full-width" ng-model="zdEmail" type="text">
                     <div class="input-error" ng-show="!validInput.zdEmailValid">
                         <p>Email must be specified</p>
                     </div>
                 </div>
                 <div class="col-5">
-                    <label>API Token</label>
+                    <label class="required">API Token</label>
                     <input class="full-width" ng-model="zdApiToken" type="text">
                     <div class="input-error" ng-show="!validInput.zdApiTokenValid">
                         <p>API Token must be specified</p>
